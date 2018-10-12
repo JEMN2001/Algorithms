@@ -1,0 +1,6 @@
+el tiempo de ejecucion de la funcion es de log2 N, ya que cada vez va a aumentar en 2 veces la cantidad anterior del i, luego su BIg Theeta es de log2 N, ya que si multiplico por una constante c1 <= 1, c1Log2 N <= LOg2 N, y con una constante c2 >= 1, log2 N <= c2Log2 N, con n1 = c1, n2 = c2, y n0 = max(n1, n2), osea n0 = n2
+
+T(N) = log2 N
+O(log2 N)
+Big Omega(log2 N)
+Big Theeta(log2 N)
