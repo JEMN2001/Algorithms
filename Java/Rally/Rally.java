@@ -19,6 +19,10 @@ public class Rally extends GraphicsProgram {
 	double limitBackgroundX1 = 5;
 	double limitBackgroundX2 = 440;
 
+	String EnemyPath = "Rally/imageEnemy.png";
+	String UserPath = "Rally/imageUser.png";
+	String ScorePath = "Rally/test.txt"; 
+
 	double startEnemy = -151;
 	
 	double speedEnemy = 1.5;
@@ -56,19 +60,19 @@ public class Rally extends GraphicsProgram {
 		GCompound Menu = new GCompound();
 	
 //Objects (User(Automovil Principal), enemies)----------------------------------------------------------------------------------
-	GImage enemy1 = new GImage ("/home/vonnewmann/Escritorio/Juanes/Java/Rally/imageEnemy.png",25,startEnemy);
+	GImage enemy1 = new GImage (EnemyPath,25,startEnemy);
 	GRect var1enemy1 = new GRect (40,startEnemy + 135, 70,10);
 	GRect var2enemy1 = new GRect (30,startEnemy + 100,90,30);
 	GRect var3enemy1 = new GRect (25,startEnemy + 12,100,30);
 	GRect var4enemy1 = new GRect (40,startEnemy,70,20);
 	
-	GImage enemy2 = new GImage ("/home/vonnewmann/Escritorio/Juanes/Java/Rally/imageEnemy.png",175,startEnemy);
+	GImage enemy2 = new GImage (EnemyPath,175,startEnemy);
 	GRect var1enemy2 = new GRect (190,startEnemy + 135, 70,10);
 	GRect var2enemy2 = new GRect (180,startEnemy + 100,90,30);
 	GRect var3enemy2 = new GRect (175,startEnemy + 12,100,30);
 	GRect var4enemy2 = new GRect (190,startEnemy,70,20);
 	
-	GImage enemy3 = new GImage ("/home/vonnewmann/Escritorio/Juanes/Java/Rally/imageEnemy.png",325,startEnemy);
+	GImage enemy3 = new GImage (EnemyPath,325,startEnemy);
 	GRect var1enemy3 = new GRect (340,startEnemy + 135, 70,10);
 	GRect var2enemy3 = new GRect (330,startEnemy + 100,90,30);
 	GRect var3enemy3 = new GRect (325,startEnemy + 12,100,30);
@@ -76,7 +80,7 @@ public class Rally extends GraphicsProgram {
 	ArrayList<GObject> enemies = new ArrayList<GObject> (Arrays.asList(enemy1,enemy2,enemy3));
 	
 	//GRect User = new GRect (X,Y,100,120);
-	GImage User = new GImage ("/home/vonnewmann/Escritorio/Juanes/Java/Rally/imageUser.png",X,Y);
+	GImage User = new GImage (UserPath,X,Y);
 	GRect var1User = new GRect (190,452,70,20);//aleron user
 	GRect var2User = new GRect (180,470,90,30);// llantas delanteras
 	GRect var3User = new GRect (175,555,100,30); //llantas trasera user
@@ -101,7 +105,7 @@ public class Rally extends GraphicsProgram {
 	
 	GCompound gameBackground = new GCompound ();
 //Metodo que lee Textos-------------------------------------------------------------------------------------------------
-	File textoRecord = new File("/home/vonnewmann/Escritorio/Juanes/Java/Rally/test.txt");
+	File textoRecord = new File(ScorePath);
 	public String Record(File a) {
 		try {
 			Scanner test = new Scanner(a);
