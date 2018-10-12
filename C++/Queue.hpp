@@ -40,6 +40,8 @@ class Queue {
 		*/
 		void deepCopy(const  Queue<datatype> & que);
 	public:
+		//Debugging
+		void printArray();
 		/*
 		*Creates a new queue
 		*/

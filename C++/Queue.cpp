@@ -20,14 +20,24 @@ template<typename datatype>
 void Queue<datatype>::deepCopy(const Queue<datatype> & que) {
 	clear();
 	datatype *temp = que.array;
-	array = new datatype[que.capacity] {};
 	for (size_t i = 0; i < que.capacity; ++i) {
+		if (i == capacity) {
+			expandCapacity();
+		}
 		*(array+i) = *(temp+i);
 	}
 	head = que.head;
 	tail = que.tail;
 	capacity = que.capacity;
 	full = que.full;
+}
+
+template<typename datatype>
+void Queue<datatype>::printArray() {
+	for (size_t i = 0; i < capacity; ++i) {
+		cout << *array+i << ", ";
+	}
+	cout << endl << "head: " << head << "\ttail: " << tail << "\tsize: " << size() << "\tcapacity: " << capacity << endl;
 }
 
 template<typename datatype>
@@ -71,6 +81,7 @@ void Queue<datatype>::clear() {
 	capacity = Initial_Capacity;
 	head = 0;
 	tail = 0;
+	full = true;
 }
 
 template<typename datatype>
@@ -104,9 +115,8 @@ datatype Queue<datatype>::top() {
 
 template<typename datatype>
 Queue<datatype> Queue<datatype>::operator=(const Queue<datatype> & que) {
-	Queue<datatype> out;
-	out.deepCopy(que);
-	return out;
+	this->deepCopy(que);
+	return *this;
 }
 
 #endif // _Queue_cpp_
