@@ -18,14 +18,8 @@ int main() {
 	if (que.empty()) {
 		cout << "el queue esta vacio!" << endl;
 	}
-	cout << "-----------------------------------------" << endl;
-	two.printArray();
+	cout << "------------------------" << endl;
 	size = two.size();
-	/*for (size_t i = 0; i < size; ++i) {
-		cout << two.pop() << endl;
-	}*/
-	if (two.empty()) {
-		cout << "el otro queue esta vacio!" << endl;
-	}
+	two.printArray();
 	return 0;
 }

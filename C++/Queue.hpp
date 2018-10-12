@@ -21,15 +21,17 @@ class Queue {
 		datatype *array;
 		/*
 		*capacity: size of the container
+		*/
+		size_t capacity;
+		/*
 		*head: initial position of the container
 		*tail: last position of the container
 		*/
-		size_t capacity;
 		int head, tail;
 		/*
 		*True if the head was the ona that change, false if was the tail
 		*/
-		bool full;
+		bool empty;
 		/*
 		*takes the array, and duplicates its capacity
 		*/
@@ -41,7 +43,7 @@ class Queue {
 		void deepCopy(const  Queue<datatype> & que);
 	public:
 		//Debugging
-		void printArray();
+		void printArray() const;
 		/*
 		*Creates a new queue
 		*/
@@ -53,11 +55,11 @@ class Queue {
 		/*
 		*function that returns the size of the container
 		*/
-		size_t size();
+		size_t size() const;
 		/*
 		*Function that returns true if the container is empty, false if not
 		*/
-		bool empty();
+		bool empty() const;
 		/*
 		*Method that clears out the container
 		*/
@@ -76,7 +78,7 @@ class Queue {
 		*Function that returns the first element in the container, but dont erase it
 		*return: the first element of the container
 		*/
-		datatype top();
+		datatype top() const;
 		/*
 		*overloads the = operator for queue assigments
 		*que: queue that will be assigned

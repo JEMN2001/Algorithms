@@ -18,23 +18,23 @@ void Queue<datatype>::expandCapacity() {
 
 template<typename datatype>
 void Queue<datatype>::deepCopy(const Queue<datatype> & que) {
-	clear();
+	que.printArray();
+	delete[] array;
+	array = new datatype[que.capacity] {};
 	datatype *temp = que.array;
-	for (size_t i = 0; i < que.capacity; ++i) {
-		if (i == capacity) {
-			expandCapacity();
-		}
-		*(array+i) = *(temp+i);
+	for (size_t i = que.head; i < (que.head+que.tail)%que.capacity; ++i) {
+		array[i] = temp[i];
 	}
 	head = que.head;
 	tail = que.tail;
 	capacity = que.capacity;
-	full = que.full;
+	empty = que.empty;
+	printArray();
 }
 
 template<typename datatype>
-void Queue<datatype>::printArray() {
-	for (size_t i = 0; i < capacity; ++i) {
+void Queue<datatype>::printArray() const {
+	for (size_t i = head; i < (head+tail)%capacity; ++i) {
 		cout << *array+i << ", ";
 	}
 	cout << endl << "head: " << head << "\ttail: " << tail << "\tsize: " << size() << "\tcapacity: " << capacity << endl;
@@ -46,7 +46,7 @@ Queue<datatype>::Queue() {
 	capacity = Initial_Capacity;
 	head = 0;
 	tail = 0;
-	full = true;
+	empty = true;
 }
 
 template<typename datatype>
@@ -56,11 +56,11 @@ Queue<datatype>::~Queue() {
 	capacity = 0;
 	head = 0;
 	tail = 0;
-	full = true;
+	empty = true;
 }
 
 template<typename datatype>
-size_t Queue<datatype>::size() {
+size_t Queue<datatype>::size() const {
 	if (head != tail || empty()) {
 		return (capacity-head+tail)%capacity;
 	}
@@ -70,8 +70,8 @@ size_t Queue<datatype>::size() {
 }
 
 template<typename datatype>
-bool Queue<datatype>::empty() {
-	return head == tail && full;
+bool Queue<datatype>::empty() const {
+	return head == tail && empty;
 }
 
 template<typename datatype>
@@ -81,7 +81,7 @@ void Queue<datatype>::clear() {
 	capacity = Initial_Capacity;
 	head = 0;
 	tail = 0;
-	full = true;
+	empty = true;
 }
 
 template<typename datatype>
@@ -91,7 +91,7 @@ void Queue<datatype>::push(datatype dt) {
 	}
 	array[tail] = dt;
 	tail =  (tail+1)%capacity;
-	full = false;
+	empty = false;
 }
 
 template<typename datatype>
@@ -101,12 +101,12 @@ datatype Queue<datatype>::pop() {
 	}
 	datatype out = *(array+head);
 	head = (head+1)%capacity;
-	full = true;
+	empty = true;
 	return out;
 }
 
 template<typename datatype>
-datatype Queue<datatype>::top() {
+datatype Queue<datatype>::top() const {
 	if (empty()) {
 		throw invalid_argument("Function top() invoked when queue was empty");
 	}
