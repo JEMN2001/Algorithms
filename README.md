@@ -1,2 +1,2 @@
 # Algorithms
-# Persnal Repository
+# Personal Repository
