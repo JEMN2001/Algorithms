@@ -1,0 +1,3 @@
+a: La proposicion es falsa, porque 2^(2*n) = (2^n)², y no se puede encontrar una constante c > 0 tal que (2^n)² <= c*(2^n), ya que 2^(2n) siempre es asintoticamente mayor a 2^n
+
+b: observe que si c = 2 y n0 = 0, se cumple que 2^(n+1) <= [c*(2^n) = 2*(2^n) = 2^(n+1)], resumiendo 2^(n+1) <= 2^(n+1) para todo N >= 0.

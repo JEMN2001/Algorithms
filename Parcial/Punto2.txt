@@ -1,0 +1,10 @@
+a:
+	SelectionSort: Para SelectionSort su Space Complexity es de O(1), ya que la  cantidad de variables que se estan guardando en memoria no depende del numero de elementos del arreglo, sino que siempre van a crear la misma cantidad de variables enteras.
+	BubbleSort: El Space Comlexity de BublleSort tambien es de O(1), porque en nignun momento se estan creando espacios en memoria en funcion del tamaño del arreglo, sino que estas siempre van a ser constantes.
+	InsertionSort: Lo mismo ocurre con InsertionSort, siempre se van a tener que la cantidad total de variables creadas son i, b y j (con respecto al pseudo-codigo de la pagina  14 del documento Sorting Algorithms), así que podemos concluir que el space complaxity de InsertionSort es de O(1).
+
+b:
+	SelectionSort: Como la funcion swap se encuentra dentro del for principal, y esta no se encuentra dentro de un condicional, entonces se realizara n-veces la funcion swap, sin embargo se realizaran a lo sumo n*(n-1)/2 comparaciones, ya que en el peor caso este sara el numero de inversiones en el arreglo.
+	BubbleSort: el condicional se evaluara (n-1)² veces, pero solo se realizara el swap un total de n*(n-1)/2 veces, ya que este es el numero maximo de inversiones en un arreglo de tamaño n.
+	InsertionSort: el primer for se ejecutara n veces, y en el peor caso el while se ejecutara (n-1) veces, sin embargo como es el peor caso, hay n*(n-1)/2 inversiones, por lo que se realizaran esa cantidad de comparaciones, y esa misma cantidad de swaps.
+	
