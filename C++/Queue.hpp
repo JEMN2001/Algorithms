@@ -31,7 +31,7 @@ class Queue {
 		/*
 		*True if the head was the ona that change, false if was the tail
 		*/
-		bool empty;
+		bool notfull;
 		/*
 		*takes the array, and duplicates its capacity
 		*/
@@ -48,6 +48,11 @@ class Queue {
 		*Creates a new queue
 		*/
 		Queue();
+		/*
+		*Creates a new queue identical to another
+		*que: Queue that will be copied
+		*/
+		Queue(const Queue<datatype> & que);
 		/*
 		*deletes the actual queue
 		*/
@@ -84,7 +89,7 @@ class Queue {
 		*que: queue that will be assigned
 		*return: a copy of que
 		*/
-		Queue<datatype> operator=(const Queue<datatype> & que);
+		Queue<datatype> & operator=(const Queue<datatype> & que);
 };
 
 #include "Queue.cpp"

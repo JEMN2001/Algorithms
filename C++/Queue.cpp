@@ -18,18 +18,16 @@ void Queue<datatype>::expandCapacity() {
 
 template<typename datatype>
 void Queue<datatype>::deepCopy(const Queue<datatype> & que) {
-	que.printArray();
 	delete[] array;
 	array = new datatype[que.capacity] {};
 	datatype *temp = que.array;
 	for (size_t i = que.head; i < (que.head+que.tail)%que.capacity; ++i) {
-		array[i] = temp[i];
+		*(array+i) = *(temp+i);
 	}
 	head = que.head;
 	tail = que.tail;
 	capacity = que.capacity;
-	empty = que.empty;
-	printArray();
+	notfull = que.notfull;
 }
 
 template<typename datatype>
@@ -46,7 +44,12 @@ Queue<datatype>::Queue() {
 	capacity = Initial_Capacity;
 	head = 0;
 	tail = 0;
-	empty = true;
+	notfull = true;
+}
+
+template<typename datatype>
+Queue<datatype>::Queue(const Queue<datatype> & que) {
+	this->deepCopy(que);
 }
 
 template<typename datatype>
@@ -56,7 +59,7 @@ Queue<datatype>::~Queue() {
 	capacity = 0;
 	head = 0;
 	tail = 0;
-	empty = true;
+	notfull = true;
 }
 
 template<typename datatype>
@@ -71,7 +74,7 @@ size_t Queue<datatype>::size() const {
 
 template<typename datatype>
 bool Queue<datatype>::empty() const {
-	return head == tail && empty;
+	return head == tail && notfull;
 }
 
 template<typename datatype>
@@ -81,7 +84,7 @@ void Queue<datatype>::clear() {
 	capacity = Initial_Capacity;
 	head = 0;
 	tail = 0;
-	empty = true;
+	notfull = true;
 }
 
 template<typename datatype>
@@ -91,7 +94,7 @@ void Queue<datatype>::push(datatype dt) {
 	}
 	array[tail] = dt;
 	tail =  (tail+1)%capacity;
-	empty = false;
+	notfull = false;
 }
 
 template<typename datatype>
@@ -101,7 +104,7 @@ datatype Queue<datatype>::pop() {
 	}
 	datatype out = *(array+head);
 	head = (head+1)%capacity;
-	empty = true;
+	notfull = true;
 	return out;
 }
 
@@ -114,7 +117,7 @@ datatype Queue<datatype>::top() const {
 }
 
 template<typename datatype>
-Queue<datatype> Queue<datatype>::operator=(const Queue<datatype> & que) {
+Queue<datatype> & Queue<datatype>::operator=(const Queue<datatype> & que) {
 	this->deepCopy(que);
 	return *this;
 }

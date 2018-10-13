@@ -19,7 +19,6 @@ int main() {
 		cout << "el queue esta vacio!" << endl;
 	}
 	cout << "------------------------" << endl;
-	size = two.size();
 	two.printArray();
 	return 0;
 }
