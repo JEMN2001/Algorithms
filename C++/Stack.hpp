@@ -35,6 +35,8 @@ class Stack {
 		void deepCopy(const Stack<datatype> & stk);
 	//public section of the class
 	public:
+		//Debugging
+		void printList() const;
 		/*
 		*Creates a new Stack
 		*/
@@ -47,11 +49,11 @@ class Stack {
 		*Function that return the size of the container
 		*return: size of the container
 		*/
-		size_t size();
+		size_t size() const;
 		/*
 		*Function that returns true if the container is empty, false if not
 		*/
-		bool empty();
+		bool empty() const;
 		/*
 		*Method that delets the actual container
 		*/
@@ -70,11 +72,11 @@ class Stack {
 		*Method that return the last element of the container, but dont erase it
 		*return: the element in the last position of the container
 		*/
-		datatype peek();
+		datatype peek() const;
 		/*
 		*Function that overload the operator = for the stack class
 		*/
-		Stack<datatype> operator=(const Stack<datatype> & stk);
+		Stack<datatype> & operator=(const Stack<datatype> & stk);
 };
 
 #include "Stack.cpp"
