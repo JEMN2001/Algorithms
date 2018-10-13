@@ -6,9 +6,9 @@ using namespace std;
 *key: the element that wants to be storaged
 *link: a pointer to the next cell of the list
 */
-struct Bloque {
+struct Cell {
 	int key;
-	Bloque *link;
+	Cell *link;
 };
 
 /*
@@ -27,12 +27,12 @@ void destroyArray(int *pointer);
 *max: Size of the list
 *return: A pointer to the first cell of the list
 */
-Bloque *IndexList(int max);
+Cell *IndexList(int max);
 /*
 *Method that takes a linked list, and delete it
 *pointer: pointer to the first cell of the list
 */
-void destroyList(Bloque *pointer);
+void destroyList(Cell *pointer);
 
 int main() {
 	int size = 10, *intpointer = IndexArray(size);
@@ -41,10 +41,10 @@ int main() {
 	}
 	cout << endl;
 	destroyArray(intpointer);
-	Bloque *Blockpointer = IndexList(size), *copy = Blockpointer;
-	while(Blockpointer != nullptr) {
-		cout << Blockpointer->key << ", ";
-		Blockpointer = Blockpointer->link;
+	Cell *CellPointer = IndexList(size), *copy = CellPointer;
+	while(CellPointer != nullptr) {
+		cout << CellPointer->key << ", ";
+		CellPointer = CellPointer->link;
 	}
 	cout << endl;
 	destroyList(copy);
@@ -64,14 +64,18 @@ void destroyArray(int *pointer) {
 	pointer = nullptr;
 }
 
-Bloque *IndexList(int max) {
-	Bloque *ptr = new Bloque, *out = ptr;
-	ptr->key = 0;
-	ptr->link = nullptr;
+Cell *IndexList(int max) {
+	Cell öut = nullptr;
+	if (max > 0) {
+		Cell *ptr = new Cell;
+		out = ptr;
+		ptr->key = 0;
+		ptr->link = nullptr;
+	}
 	for (int i = 0; i < max; ++i) {
 		ptr->key = i;
 		if (i < max-1) {
-			ptr->link = new Bloque;
+			ptr->link = new Cell;
 			ptr = ptr->link;
 			ptr->link = nullptr;
 		}
@@ -82,8 +86,8 @@ Bloque *IndexList(int max) {
 	return out;
 }
 
-void destroyList(Bloque *pointer) {
-	Bloque *temp;
+void destroyList(Cell *pointer) {
+	Cell *temp;
 	while (pointer != nullptr) {
 		temp = pointer;
 		pointer = pointer->link;
