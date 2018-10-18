@@ -2,7 +2,7 @@
 #define _Queue_hpp_
 /*
 *Created by: JEMN2001
-*Last Update: 8/10/2018
+*Last Update: 18/10/2018
 */
 
 using namespace std;
@@ -29,7 +29,7 @@ class Queue {
 		*/
 		int head, tail;
 		/*
-		*True if the head was the ona that change, false if was the tail
+		*True if the head was the one that change, false if was the tail
 		*/
 		bool notfull;
 		/*
@@ -42,8 +42,6 @@ class Queue {
 		*/
 		void deepCopy(const  Queue<datatype> & que);
 	public:
-		//Debugging
-		void printArray() const;
 		/*
 		*Creates a new queue
 		*/

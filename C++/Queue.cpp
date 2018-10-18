@@ -31,14 +31,6 @@ void Queue<datatype>::deepCopy(const Queue<datatype> & que) {
 }
 
 template<typename datatype>
-void Queue<datatype>::printArray() const {
-	for (size_t i = head; i < (head+tail)%capacity; ++i) {
-		cout << *array+i << ", ";
-	}
-	cout << endl << "head: " << head << "\ttail: " << tail << "\tsize: " << size() << "\tcapacity: " << capacity << endl;
-}
-
-template<typename datatype>
 Queue<datatype>::Queue() {
 	array = new datatype[Initial_Capacity] {};
 	capacity = Initial_Capacity;
