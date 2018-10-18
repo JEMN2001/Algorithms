@@ -1,48 +1,103 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <map>
+#include <queue>
 using namespace std;
 
-string toMorse(string & str);
-string toWords(string & str);
+pair<map<char, string>, map<string, char>> doMaps(string filename);
+string toMorse(char ch);
+char toWords(string str);
+queue<char> keybuff;
+pair<map<char, string>, map<string, char>> pr;
 
 int main() {
-	char ch;
-	string str;
-	ch = getchar();
-	while (ch != '\n') {
-		while(ch != ' ') {
-			str += ch;
-			ch = getchar();
+	pr = doMaps("Morse");
+	while (true) {
+		cout << "> ";
+		char c = getchar();
+		if (c == '\n') {
+			break;
 		}
-		cout << str << " " << endl;
-		ch = getchar();
+		while (c != '\n') {
+			keybuff.push(c);
+			c = getchar();
+		}
+		if (keybuff.front() != '.' && keybuff.front() != '-') {
+			while (!keybuff.empty()) {
+				char temp = keybuff.front();
+				cout << toMorse(temp) << " ";
+				keybuff.pop();
+			}
+			cout << endl;
+		}
+		else {
+			string test = "";
+			while (!keybuff.empty()) {
+				if (keybuff.front() != ' ') {
+					test.push_back(keybuff.front());
+				}
+				else {
+					cout << toWords(test);
+					test = "";
+				}
+				keybuff.pop();
+			}
+			cout << toWords(test) << endl;
+		}
 	}
-	/*cout << "Ingrese algo:\n> ";
-	getline(cin, str);
-	cout << toMorse(str) << endl;
-	*/
-	return 0;
 }
 
-map<char, string> chmo = {{'a', "·—"}, {'b', "—···"}, {'c', "—·—·"}, {'d', "—··"}, {'e', "·"}, {'f', "··—·"}, {'g', "——·"}, {'h', "····"}, {'i', "··"}, {'j', "·———"}, {'k', "—·—"}, {'l', "·—··"}, {'m', "——"}, {'n', "—·"}, {'o', "———"}, {'p', "·——·"}, {'q', "——·—"}, {'r', "·—·"}, {'s', "···"}, {'t', "—"}, {'u', "··—"}, {'v', "···—"}, {'w', "·——"}, {'x', "—··—"}, {'y', "—·——"}, {'z', "——··"}, {'0', "—————"}, {'1', "·————"}, {'2', "··———"}, {'3', "···——"}, {'4', "····—"}, {'5', "·····"}, {'6', "—····"}, {'7', "——···"}, {'8', "———··"}, {'9', "————·"}, {'A', "·—"}, {'B', "—···"}, {'C', "—·—·"}, {'D', "—··"}, {'E', "·"}, {'F', "··—·"}, {'G', "——·"}, {'H', "····"}, {'I', "··"}, {'J', "·———"}, {'K', "—·—"}, {'L', "·—··"}, {'M', "——"}, {'N', "—·"}, {'O', "———"}, {'P', "·——·"}, {'Q', "——·—"}, {'R', "·—·"}, {'S', "···"}, {'T', "—"}, {'U', "··—"}, {'V', "···—"}, {'W', "·——"}, {'X', "—··—"}, {'Y', "—·——"}, {'Z', "——··"}};
-
-map<string, char> moch = {{"·—", 'a'}, {"—···", 'b'}, {"—·—·", 'c'}, {"—··", 'd'}, {"·", 'e'}, {"··—·", 'f'}, {"——·", 'g'}, {"····", 'h'}, {"··", 'i'}, {"·———", 'j'}, {"—·—", 'k'}, {"·—··", 'l'}, {"——", 'm'}, {"—·", 'n'}, {"———", 'o'}, {"·——·", 'p'}, {"——·—", 'q'}, {"·—·", 'r'}, {"···", 's'}, {"—", 't'}, {"··—", 'u'}, {"···—", 'v'}, {"·——", 'w'}, {"—··—", 'x'}, {"—·——", 'y'}, {"——··", 'z'}, {"—————", '0'}, {"·————", '1'}, {"··———", '2'}, {"···——", '3'}, {"····—", '4'}, {"·····", '5'}, {"—····", '6'}, {"——···", '7'}, {"———··", '8'}, {"————·", '9'}};
-
-string toMorse(string & str) {
-	string out = "";
-	char temp;
-	for (size_t i = 0; i < str.size(); ++i) {
-		temp = str.at(i);
-		if ((temp >= 'A' && temp <= 'Z') || (temp >= 'a' && temp <= 'z') || (temp >= '0' && temp <= '9')) {
-			out += chmo[str.at(i)]+" ";
+pair<map<char, string>, map<string, char>> doMaps(string filename) {
+	map<char, string> out1;
+	map<string, char> out2;
+	fstream archivo(filename+".txt");
+	string linea;
+	int count = 0;
+	int count2 = 0;
+	if (!archivo.is_open()) {
+		archivo.open(filename+".txt", ios::in);
+	}
+	while (getline(archivo, linea)) {
+		if (count < 26) {
+			out1.emplace((char) 'A'+count, linea);
+			out1.emplace((char) 'a'+count, linea);
+			out2.emplace(linea, (char) 'A'+count);
+			count++;
 		}
-		else if (temp == ' ') {
-			out += "  ";
+		else {
+			out1.emplace((char) '0'+count2, linea);
+			out2.emplace(linea, '0'+count2);
+			count2++;
 		}
 	}
-	if (out.size() > 0) {
-		out = out.substr(0, out.size()-1);
+	archivo.close();
+	pair<map<char, string>, map<string, char>> out;
+	out.first = out1;
+	out.second = out2;
+	return out;
+}
+
+string toMorse(char ch) {
+	string out;
+	if (pr.first.count(ch)) {
+		out = pr.first.at(ch);
+		return out;
+	}
+	else {
+		out.push_back(ch);
+		return out;
+	}
+}
+
+char toWords(string str) {
+	char out;
+	if (pr.second.count(str)) {
+		out = pr.second.at(str);
+	}
+	else {
+		cout << endl << (str+" no es valido") << endl;
+		out = ' ';
 	}
 	return out;
 }
