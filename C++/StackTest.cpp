@@ -7,7 +7,6 @@ int main() {
 	for (int i = 1; i <= 20; ++i) {
 		mystack.push(i);
 	}
-	other.printList();
 	int size = mystack.size();
 	for (int i = 0; i < size; ++i) {
 		cout << mystack.pop() << endl;

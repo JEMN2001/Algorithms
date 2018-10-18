@@ -2,7 +2,7 @@
 #define _Stack_hpp_
 /*
 *Author: JEMN2001
-*Last Update: 8/10/2018
+*Last Update: 18/10/2018
 */
 
 using namespace std;
@@ -35,8 +35,6 @@ class Stack {
 		void deepCopy(const Stack<datatype> & stk);
 	//public section of the class
 	public:
-		//Debugging
-		void printList() const;
 		/*
 		*Creates a new Stack
 		*/

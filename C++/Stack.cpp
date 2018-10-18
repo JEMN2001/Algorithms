@@ -3,15 +3,6 @@
 #include <iostream>
 #include "Stack.hpp"
 
-template<typename datatype>
-void Stack<datatype>::printList() const {
-	Cell *begin = stack;
-	while(begin != nullptr) {
-		cout << begin->data << ", ";
-		begin = begin->link;
-	}
-	cout << endl << "count: " << count << endl;
-}
 template <typename datatype>
 Stack<datatype>::Stack() {
 	stack = nullptr;
