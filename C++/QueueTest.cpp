@@ -19,6 +19,12 @@ int main() {
 		cout << "el queue esta vacio!" << endl;
 	}
 	cout << "------------------------" << endl;
-	two.printArray();
+	size = two.size();
+	for (size_t i = 0; i < size; ++i) {
+		cout << two.pop() << endl;
+	}
+	if (two.empty()) {
+		cout << "el otro queue esta vacio!" << endl;
+	}
 	return 0;
 }
