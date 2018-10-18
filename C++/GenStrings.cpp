@@ -8,7 +8,7 @@ set<string> doSet_Strings_helper(size_t length, set<char> st, string str);
 
 int main() {
 	set<char> st = {'1', '0'};
-	size_t length = 2;
+	size_t length = 3;
 	set<string> con = doSet_Strings(length, st);
 	for(auto it = con.begin(); it != con.end(); it++) {
 		cout << *it << endl;
