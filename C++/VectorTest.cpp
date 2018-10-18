@@ -6,9 +6,10 @@ int main() {
 	Vector<int> myvec;
 	myvec.push_back(1);
 	myvec.push_back(2);
-	for (unsigned i = 0; i < myvec.size(); ++i) {
-		cout << myvec.at(i) << ", ";
-	}
-	cout << endl << myvec[1] << endl;
+	cout << myvec << endl << myvec.Capacity() << endl;
+	myvec.resize(15);
+	cout << myvec << endl << myvec.Capacity() << endl;
+	myvec.clear();
+	cout << myvec << endl << myvec.Capacity() << endl;
 	return 0;
 }

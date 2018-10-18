@@ -13,7 +13,7 @@ Vector<datatype>::Vector() {
 template<typename datatype>
 Vector<datatype>::Vector(Vector<datatype> & other) {
 	vec = new datatype[other.capacity] {};
-	for (unsigned i = 0; i < other.count; ++i) {
+	for (size_t i = 0; i < other.count; ++i) {
 		vec[i] = other[i];
 	}
 	count = other.count;
@@ -31,7 +31,7 @@ Vector<datatype>::~Vector() {
 template<typename datatype>
 Vector<datatype> & Vector<datatype>::operator=(const Vector<datatype> & other) {
 	vec = new datatype[other.capacity] {};
-	for (unsigned i = 0; i < other.count; ++i) {
+	for (size_t i = 0; i < other.count; ++i) {
 		vec[i] = other[i];
 	}
 	count = other.count;
@@ -40,17 +40,32 @@ Vector<datatype> & Vector<datatype>::operator=(const Vector<datatype> & other) {
 }
 
 template<typename datatype>
-datatype & Vector<datatype>::operator[](const unsigned idx) {
+ostream & operator<<(ostream & os, Vector<datatype> & vec) {
+	os << '[';
+	for (size_t i = 0; i < vec.size(); ++i) {
+		if (i+1 < vec.size()) {
+			os << vec.at(i) << ", ";
+		}
+		else {
+			os << vec.at(i);;
+		}
+	}
+	os << "]";
+	return os;
+}
+
+template<typename datatype>
+datatype & Vector<datatype>::operator[](const size_t idx) {
 	return *(vec+idx);
 }
 
 template<typename datatype>
-unsigned Vector<datatype>::size() const {
+size_t Vector<datatype>::size() const {
 	return count;
 }
 
 template<typename datatype>
-unsigned Vector<datatype>::Capacity() const {
+size_t Vector<datatype>::Capacity() const {
 	return capacity;
 }
 
@@ -69,19 +84,19 @@ void Vector<datatype>::clear() {
 
 
 template<typename datatype>
-void Vector<datatype>::resize(unsigned newsize) {
+void Vector<datatype>::resize(size_t newsize) {
 	datatype *old = vec;
 	if (newsize > count) {
 		capacity = newsize*2;
 		vec = new datatype[capacity] {};
-		for (unsigned i = 0; i < count; ++i) {
+		for (size_t i = 0; i < count; ++i) {
 			vec[i] = old[i];
 		}
 		delete[] old;
 	}
 	else if (newsize < count) {
 		vec = new datatype[capacity] {};
-		for (unsigned i = 0; i < newsize; ++i) {
+		for (size_t i = 0; i < newsize; ++i) {
 			vec[i] = old[i];
 		}
 		delete[] old;
@@ -93,11 +108,11 @@ void Vector<datatype>::resize(unsigned newsize) {
 }
 
 template<typename datatype>
-void Vector<datatype>::reserve(unsigned newCap) {
+void Vector<datatype>::reserve(size_t newCap) {
 	datatype *old = vec;
 	if (newCap > capacity) {
 		vec = new datatype[newCap] {};
-		for (unsigned i = 0; i < count; ++i) {
+		for (size_t i = 0; i < count; ++i) {
 			vec[i] = old[i];
 		}
 		delete[] old;
@@ -106,7 +121,7 @@ void Vector<datatype>::reserve(unsigned newCap) {
 }
 
 template<typename datatype>
-datatype & Vector<datatype>::at(unsigned idx) {
+datatype & Vector<datatype>::at(size_t idx) {
 	if (idx < count) {
 		return vec[idx];
 	}
