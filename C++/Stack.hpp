@@ -40,6 +40,11 @@ class Stack {
 		*/
 		Stack();
 		/*
+		*Creates a new Stack, identical to another one
+		*stk: Stack that will be copied
+		*/
+		Stack(const Stack<datatype> & stk);
+		/*
 		*deletes the actual stack
 		*/
 		~Stack();

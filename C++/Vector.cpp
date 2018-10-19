@@ -32,7 +32,7 @@ template<typename datatype>
 Vector<datatype> & Vector<datatype>::operator=(const Vector<datatype> & other) {
 	vec = new datatype[other.capacity] {};
 	for (size_t i = 0; i < other.count; ++i) {
-		vec[i] = other[i];
+		*(vec+i) = *(other.vec+i);
 	}
 	count = other.count;
 	capacity = other.capacity;

@@ -11,6 +11,7 @@ int main() {
 		}
 	}
 	two = que;
+	Queue<int> three = two;
 	size_t size = que.size();
 	for (size_t i = 0; i < size; ++i) {
 		cout << que.pop() << endl;
@@ -24,6 +25,14 @@ int main() {
 		cout << two.pop() << endl;
 	}
 	if (two.empty()) {
+		cout << "el otro queue esta vacio!" << endl;
+	}
+	cout << "-----------------------------------" << endl;
+	size = three.size();
+	for (size_t i = 0; i < size; ++i) {
+		cout << three.pop() << endl;
+	}
+	if (three.empty()) {
 		cout << "el otro queue esta vacio!" << endl;
 	}
 	return 0;

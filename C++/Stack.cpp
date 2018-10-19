@@ -9,6 +9,12 @@ Stack<datatype>::Stack() {
 	count = 0;
 }
 
+template<typename datatype>
+Stack<datatype>::Stack(const Stack<datatype> & stk) {
+	stack = nullptr;
+	this->deepCopy(stk);
+}
+
 template <typename datatype>
 Stack<datatype>::~Stack() {
 	clear();
@@ -80,7 +86,6 @@ datatype Stack<datatype>::peek() const {
 
 template<typename datatype>
 void Stack<datatype>::deepCopy(const Stack<datatype> & stk) {
-	clear();
 	Cell *temp = stk.stack;
 	if (temp != nullptr) {
 		stack = new Cell;
@@ -95,13 +100,14 @@ void Stack<datatype>::deepCopy(const Stack<datatype> & stk) {
 		stack->data = temp->data;
 		stack->link = nullptr;
 		temp = temp->link;
-		count++;
 	}
 	stack = begin;
+	count = stk.count;
 }
 
 template <typename datatype>
 Stack<datatype> & Stack<datatype>::operator=(const Stack<datatype> & stk) {
+	this->clear();
 	this->deepCopy(stk);
 	return *this;
 }
