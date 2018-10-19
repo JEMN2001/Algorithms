@@ -21,6 +21,26 @@ Vector<datatype>::Vector(Vector<datatype> & other) {
 }
 
 template<typename datatype>
+Vector<datatype>::Vector(const initializer_list<datatype> & ls) {
+	vec = new datatype[Initial_Capacity] {};
+	count = 0;
+	capacity = Initial_Capacity;
+	for(auto i = ls.begin(); i != ls.end(); ++i) {
+		push_back(*i);
+	}
+}
+
+template<typename datatype>
+Vector<datatype>::Vector(size_t sz, datatype dt) {
+	vec = new datatype[Initial_Capacity] {};
+	count = 0;
+	capacity = Initial_Capacity;
+	for (size_t i = 0; i < sz; ++i) {
+		push_back(dt);
+	}
+}
+
+template<typename datatype>
 Vector<datatype>::~Vector() {
 	delete[] vec;
 	vec = nullptr;

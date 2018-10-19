@@ -14,6 +14,10 @@ int main() {
 	myvec.clear();
 	cout << myvec << endl << myvec.Capacity() << endl;
 	cout << other << endl << other.Capacity() << endl;
-	cout << three << endl << other.Capacity() << endl;
+	cout << three << endl << three.Capacity() << endl;
+	three = {1, 2, 3, 4, 5};
+	cout << three << " " << three.Capacity() << endl;
+	Vector<char> charvec(10, 'a');
+	cout << charvec << " " << charvec.Capacity() << endl;
 	return 0;
 }

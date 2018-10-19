@@ -7,7 +7,6 @@
 #include <iostream>
 
 using namespace std;
-
 /*
 *This class recreates the std::vector class of c++, using dynamic memory allocation, and dynamic arrays
 *indexble container, with dynamic size
@@ -35,6 +34,17 @@ class Vector {
 		*other: Vector that will be copied
 		*/
 		Vector(Vector<datatype> & other);
+		/*
+		*Creates a new vector, acording to a std::initializer_list
+		*ls: initializar_list that will be used
+		*/
+		Vector(const initializer_list<datatype> & ls);
+		/*
+		*Creates a new vector, of size sz, with all the elements being equal to dt
+		*sz = size of the vector
+		*dt: Element for all the positions
+		*/
+		Vector(size_t sz, datatype dt);
 		/*
 		*deletes the actual vector
 		*/
