@@ -48,6 +48,11 @@ class List {
 		*/
 		List(const List<datatype> & ls);
 		/*
+		*Creates a new ist, identical to a initializer list
+		*ls: initializer list that will be used
+		*/
+		List(const initializer_list<datatype> & ls);
+		/*
 		*Deletes the current List
 		*/
 		~List();

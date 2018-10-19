@@ -21,6 +21,12 @@ int main() {
 		cout << p.Back() << ", ";
 		p.pop_back();
 	}
+	cout << endl << "-----------------------------" << endl;
+	c = {1, 2, 3, 4, 5};
+	while (!c.empty()) {
+		cout << c.Front() << ", ";
+		c.pop_front();
+	}
 	cout << endl;
 	return 0;
 }

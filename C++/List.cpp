@@ -37,6 +37,15 @@ List<datatype>::List(const List<datatype> & ls) {
 }
 
 template<typename datatype>
+List<datatype>::List(const initializer_list<datatype> & ls) {
+	front = back = nullptr;
+	count = 0;
+	for (auto i = ls.begin(); i != ls.end(); ++i) {
+		push_back(*i);
+	}
+}
+
+template<typename datatype>
 List<datatype>::~List() {
 	this->clear();
 }
