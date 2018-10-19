@@ -122,6 +122,17 @@ class Vector {
 		*Function that deletes the last element in the container
 		*/
 		void pop_back();
+		/*
+		*Method that erase the element in the idx position
+		*idx: position of the element
+		*/
+		void erase(size_t idx);
+		/*
+		*Method that inserts the element dt in the idx position
+		*idx: position for the element
+		*dt: element
+		*/
+		void insert(size_t idx, datatype dt);
 };
 
 #include "Vector.cpp"

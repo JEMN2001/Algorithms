@@ -145,7 +145,7 @@ datatype & Vector<datatype>::at(size_t idx) {
 	if (idx < count) {
 		return vec[idx];
 	}
-	throw;
+	throw invalid_argument("Function at(idx) invoked when idx was out of bounds");
 }
 
 template<typename datatype>
@@ -173,6 +173,48 @@ void Vector<datatype>::pop_back() {
 	}
 	else {
 		throw;
+	}
+}
+
+template<typename datatype>
+void Vector<datatype>::erase(size_t idx) {
+	if (idx < count) {
+		datatype *old = vec;
+		vec = new datatype[capacity] {};
+		for (size_t i = 0; i < count; ++i) {
+			if (i < idx) {
+				vec[i] = old[i];
+			}
+			else if (i > idx) {
+				vec[i-1] = old[i];
+			}
+		}
+		delete[] old;
+		count--;
+	}
+	else {
+		throw invalid_argument("Function erase(idx) invoked when idx was out of bounds");
+	}
+}
+
+template<typename datatype>
+void Vector<datatype>::insert(size_t idx, datatype dt) {
+	if (idx < count) {
+		if (count+1 == capacity) 
+			reserve(capacity*2);
+		datatype *old = vec;
+		vec = new datatype[capacity] {};
+		for (size_t i = 0; i < count; ++i) {
+			if (i < idx)
+				vec[i] = old[i];
+			else 
+				vec[i+1] = old[i];
+		}
+		vec[idx] = dt;
+		count++;
+	}
+	else {
+		throw invalid_argument("Function insert(idx, dt) invoked when idx was out of bounds");
 	}
 }
 

@@ -17,6 +17,10 @@ int main() {
 	cout << three << endl << three.Capacity() << endl;
 	three = {1, 2, 3, 4, 5};
 	cout << three << " " << three.Capacity() << endl;
+	three.erase(2);
+	cout << three << " " << three.Capacity() << " " << three.size() << endl;
+	three.insert(2, 3);
+	cout << three << " " << three.Capacity() << " " << three.size() << endl;
 	Vector<char> charvec(10, 'a');
 	cout << charvec << " " << charvec.Capacity() << endl;
 	return 0;
