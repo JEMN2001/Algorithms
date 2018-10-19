@@ -65,9 +65,9 @@ void destroyArray(int *pointer) {
 }
 
 Cell *IndexList(int max) {
-	Cell öut = nullptr;
+	Cell *out = nullptr, *ptr = out;
 	if (max > 0) {
-		Cell *ptr = new Cell;
+		ptr = new Cell;
 		out = ptr;
 		ptr->key = 0;
 		ptr->link = nullptr;
