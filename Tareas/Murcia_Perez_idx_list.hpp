@@ -27,7 +27,7 @@ class indexable_list {
 		dataType obtain(size_t idx) const;
 		void insert(size_t idx, dataType value);
 		void replace(size_t idx, dataType value);
-		//dataType erase(size_t idx);
+		dataType erase(size_t idx);
 };
 
 #include "Murcia_Perez_idx_list.cpp"

@@ -11,6 +11,7 @@ indexable_list<dataType>::indexable_list() {
 template<typename dataType>
 indexable_list<dataType>::~indexable_list() {
 	clear();
+	delete head;
 }
 
 template<typename dataType>
@@ -107,7 +108,13 @@ dataType indexable_list<dataType>::obtain(size_t idx) const {
 
 template<typename dataType>
 void indexable_list<dataType>::insert(size_t idx, dataType value){
-	if (idx < count) {
+	if (idx == 0) {
+		Cell *temp = head;
+		head = new Cell;
+		head->data = value;
+		head->link = temp;
+	}
+	else if (idx < count && idx > 0) {
 		Cell *toinsert = head, *tomove = head;
 		for(size_t i = 0; i < idx -1; ++i) {
 			toinsert = tomove = toinsert->link;
@@ -144,5 +151,41 @@ void indexable_list<dataType>::replace(size_t idx, dataType value){
 	else {
 		throw invalid_argument("replace(idx): index out of range");
 	}
+}
+
+template<typename dataType>
+dataType indexable_list<dataType>::erase(size_t idx) {
+	dataType out;
+	if (idx == 0) {
+		Cell *temp = head;
+		out = head->data;
+		head = head->link;
+		delete temp;
+		temp = nullptr;
+	}
+	else if (idx < count-1 && idx > 0) {
+		Cell *toerase = head, *tomove = head;
+		for(size_t i = 0; i < idx-1; ++i) {
+			toerase = tomove = toerase->link;
+		}
+		out = tomove->link->data;
+		tomove = tomove->link->link;
+		delete toerase->link;
+		toerase->link = tomove;
+	}
+	else if (idx == count-1) {
+		Cell *toerase = head;
+		for (size_t i = 0; i < idx-1; ++i) {
+			toerase = toerase->link;
+		}
+		out = toerase->link->data;
+		delete toerase->link;
+		toerase->link = nullptr;
+	}
+	else {
+		throw invalid_argument ("erase(idx): index out of range");
+	}
+	count--;
+	return out;
 }
 #endif //_indexable_list_cpp
