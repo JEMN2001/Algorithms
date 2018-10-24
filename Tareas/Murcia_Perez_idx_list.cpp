@@ -28,20 +28,16 @@ ostream & operator<<(ostream & out, indexable_list<dataType> & lst) {
 	return out;
 }
 
-/*template<typename dataType>
-const dataType & indexable_list<dataType>::operator[](size_t idx) {
-	if (idx < count) {
-		Cell *temp = head;
-		for (size_t i = 0; i <= idx; ++i) {
-			temp = temp->link;
-		}
-		const dataType & out = temp->data;
-		return out;
+template<typename dataType>
+const dataType & indexable_list<dataType>::operator[](size_t idx) const {
+	cout << "This was used" << endl;
+	Cell *temp = head;
+	for (size_t i = 0; i <= idx; ++i) {
+		temp = temp->link;
 	}
-	else {
-		throw invalid_argument("index out of range");
-	}
-}*/
+	const dataType & out = temp->data;
+	return out;
+}
 
 template<typename dataType>
 dataType & indexable_list<dataType>::operator[](size_t idx) {

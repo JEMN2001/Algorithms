@@ -17,8 +17,12 @@ int main() {
 
 	//operator <<
 	cout << "\noperator <<: " << endl;
-	cout << mylist << endl;
+	cout << mylist << endl << endl;
 
+	//operator [] const
+	cout << "operator [] const:" << endl;
+	const char p = mylist[4];
+	cout << p << endl ;
 	//operator []
 	cout << "\noperator []: " << endl;
 	for (size_t i = 0; i < mylist.size(); ++i) {

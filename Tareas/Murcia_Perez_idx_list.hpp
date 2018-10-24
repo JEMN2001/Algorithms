@@ -18,7 +18,7 @@ class indexable_list {
 		indexable_list();
 		~indexable_list();
 		template<typename Type> friend ostream & operator<<(ostream & out, indexable_list<Type> & lst);
-		//const dataType & operator[](size_t idx);
+		const dataType & operator[](size_t idx) const;
 		dataType & operator[](size_t idx);
 		size_t size() const;
 		bool empty() const;
