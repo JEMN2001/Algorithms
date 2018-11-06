@@ -1,3 +1,7 @@
+/*
+*Created BY: JEMN2001
+*Last Update: 6/11/2018
+*/
 #ifndef _BST_hpp_
 #define _BST_hpp_
 
