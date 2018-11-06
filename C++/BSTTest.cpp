@@ -11,9 +11,10 @@ int main() {
 	BST<int> other = mytree;
 	mytree.display();
 	cout << "My actual size is: " << mytree.size() << endl;
+	cout << "-----------------------------------" << endl;
 	mytree.remove(5);
 	mytree.display();
-	cout << "My actual size is: " << mytree.size() << endl << "------------------------------" << endl;
+	cout << "My actual size is: " << mytree.size() << endl << "-----------------------------------" << endl;
 	mytree.remove(1);
 	mytree.remove(10);
 	mytree.display();
@@ -21,6 +22,7 @@ int main() {
 	cout << "-----------------------------------" << endl;
 	other.display();
 	cout << "My actual size is: " << other.size() << endl;
+	cout << "-----------------------------------" << endl;
 	if(other.find(10)) {
 		cout << "10 is in the tree" << endl;
 	}
@@ -30,5 +32,6 @@ int main() {
 	other.clear();
 	other.display();
 	cout << "My actual size is: " << other.size() << endl;
+	cout << "-----------------------------------" << endl;
 	return 0;
 }
