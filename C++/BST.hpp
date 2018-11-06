@@ -12,6 +12,7 @@ class BST {
 		};
 
 		size_t count;
+		BSTNode *root;
 
 		BSTNode * min(BSTNode *root) const;
 		BSTNode * max(BSTNode *root) const;
@@ -26,11 +27,9 @@ class BST {
 		BSTNode * Find(BSTNode *root, datatype key) const;
 
 	public:
-		BSTNode *root;
 		BST();
 		BST(const BST & rhs);
 		~BST();
-		void printTree(BSTNode *rt) const;
 		void remove(datatype key);
 		bool empty(void) const;
 		void clear(void);

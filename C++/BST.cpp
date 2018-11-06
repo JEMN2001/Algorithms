@@ -63,47 +63,61 @@ typename BST<datatype>::BSTNode * BST<datatype>::predecessor(BST<datatype>::BSTN
 
 template<typename datatype>
 void BST<datatype>::remove(BST<datatype>::BSTNode * &root, datatype key) {
-	BSTNode *temp = Find(root, key);
+	BSTNode *temp = Find(root, key), *other = temp;
 	if (temp != nullptr) {
-		BSTNode *parent = temp->parent, *left = temp->left, *right = temp->right;
-		if (left == nullptr && right == nullptr) {
-			if (parent->left == temp) {
-				parent->left = nullptr;
+		if (temp->left == nullptr && temp->right == nullptr) {
+			temp = temp->parent;
+			if (temp != nullptr) {
+				if (temp->left == other) {
+					temp->left = nullptr;
+				}
+				else if (temp->right == other) {
+					temp->right = nullptr;
+				}
 			}
-			else if (parent->right == temp) {
-				parent->right = nullptr;
+			else {
+				this->root = nullptr;
 			}
+			delete other;
 		}
-		else if (left == nullptr && right != nullptr) {
-			if (parent->left == temp) {
-				parent->left = right;
+		else if (temp->left == nullptr && temp->right != nullptr) {
+			temp = temp->parent;
+			if (temp != nullptr) {
+				if (key < temp->key) {
+					temp->left = other->right;
+				}
+				else if (key > temp->key) {
+					temp->right = other->right;
+				}
 			}
-			else if (parent->right == temp) {
-				parent->right = right;
+			else {
+				this->root = other->right;
+				this->root->parent = nullptr;
 			}
+			delete other;
 		}
-		else if (left != nullptr && right == nullptr) {
-			if (parent->left == temp) {
-				parent->left = left;
+		else if (temp->left != nullptr && temp->right == nullptr) {
+			temp = temp->parent;
+			if (temp != nullptr) {
+				if (key < temp->key) {
+					temp->left = other->left;
+				}
+				else if (key > temp->key) {
+					temp->right = other->left;
+				}
 			}
-			else if (parent->right == temp) {
-				parent->right = left;
+			else {
+				this->root = other->left;
+				this->root->parent = nullptr;
 			}
+			delete other;
 		}
 		else {
-			BSTNode *other;
-			if (parent->right == temp) {
-				parent->right = right;
-				other = min(right);
-				other->left = left;
-			}
-			else if (parent->left == temp) {
-				parent->left = left;
-				other = max(left);
-				other->right = right;
-			}
+			BSTNode *other2 = predecessor(other);
+			other->key = other2->key;
+			remove(other2, other2->key);
+			count++;
 		}
-		delete temp;
 		count--;
 	}
 }
@@ -183,15 +197,6 @@ BST<datatype>::BST(const BST & rhs) {
 template<typename datatype>
 BST<datatype>::~BST() {
 	clear();
-}
-
-template<typename datatype>
-void BST<datatype>::printTree(BSTNode *rt) const{
-	if (rt != nullptr) {
-		printTree(rt->left);
-		std::cout << rt->key << std::endl;
-		printTree(rt->right);	
-	}
 }
 
 template<typename datatype>
