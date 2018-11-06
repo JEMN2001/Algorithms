@@ -20,9 +20,9 @@ class BST {
 		BSTNode * predecessor(BSTNode *root) const;
 
 		void remove(BSTNode * &root, datatype key);
-		BSTNode * copy(BSTNode *root, BSTNode *parent = nullptr);
+		BSTNode * copy(BSTNode * root, BSTNode *parent = nullptr);
 		void clear(BSTNode *root);
-		//void display(BSTNode *root, std::ostream & out) const;
+		void display(BSTNode *root, std::ostream & out, size_t times) const;
 		void insert(BSTNode * &root, datatype key, BST<datatype>::BSTNode *parent = nullptr);
 		BSTNode * Find(BSTNode *root, datatype key) const;
 
@@ -36,7 +36,7 @@ class BST {
 		size_t size(void) const;
 		bool find(datatype key) const;
 		void insert(datatype key);
-		//void display(std::ostream &out = std::cout) const;
+		void display(std::ostream &out = std::cout) const;
 };
 
 #include "BST.cpp"

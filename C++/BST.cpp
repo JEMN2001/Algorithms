@@ -123,13 +123,13 @@ void BST<datatype>::remove(BST<datatype>::BSTNode * &root, datatype key) {
 }
 
 template<typename datatype>
-typename BST<datatype>::BSTNode * BST<datatype>::copy(BST<datatype>::BSTNode *root, BST<datatype>::BSTNode *parent) {
-	BSTNode out = nullptr;
+typename BST<datatype>::BSTNode * BST<datatype>::copy(BST<datatype>::BSTNode * root, BST<datatype>::BSTNode *parent) {
+	BSTNode *out = nullptr;
 	if (root != nullptr) {
 		out = new BSTNode;
 		out->parent = parent;
 		out->key = root->key;
-		out->Left = copy(root->left, out);
+		out->left = copy(root->left, out);
 		out->right = copy(root->right, out);
 	}
 	return out;
@@ -142,6 +142,20 @@ void BST<datatype>::clear(BST<datatype>::BSTNode *root) {
 		delete root;
 		clear(left);
 		clear(right);
+	}
+}
+
+template<typename datatype>
+void BST<datatype>::display(BSTNode *root, std::ostream & out, size_t times) const {
+	if (root != nullptr) {
+		if (times < count) {
+			display(root->left, out, ++times);
+			out << root->key << ", ";
+			display(root->right, out, ++times);
+		}
+		else {
+			out << root->key;
+		}
 	}
 }
 
@@ -190,7 +204,7 @@ BST<datatype>::BST() {
 
 template<typename datatype>
 BST<datatype>::BST(const BST & rhs) {
-	copy(rhs);
+	this->root = copy(rhs.root, nullptr);
 	count = rhs.count;
 }
 
@@ -232,6 +246,13 @@ template<typename datatype>
 void BST<datatype>::insert(datatype key) {
 	insert(root, key, nullptr);
 	count++;
+}
+
+template<typename datatype>
+void BST<datatype>::display(std::ostream &out) const {
+	out << "[";
+	display(root, out, 1);
+	out << "]\n";
 }
 
 #endif //_BST_cpp_
