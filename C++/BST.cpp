@@ -6,8 +6,10 @@
 template<typename datatype>
 typename BST<datatype>::BSTNode * BST<datatype>::min(BST<datatype>::BST::BSTNode *root) const{
 	BSTNode *temp = root;
-	while (temp->left != nullptr) {
-		temp = temp->left;
+	if (temp != nullptr) {
+		while (temp->left != nullptr) {
+			temp = temp->left;
+		}
 	}
 	return temp;
 }
@@ -15,8 +17,10 @@ typename BST<datatype>::BSTNode * BST<datatype>::min(BST<datatype>::BST::BSTNode
 template<typename datatype>
 typename BST<datatype>::BSTNode * BST<datatype>::max(BST<datatype>::BST::BSTNode *root) const{
 	BSTNode *temp = root;
-	while (temp->right != nullptr) {
-		temp = temp->right;
+	if (temp != nullptr) {
+		while (temp->right != nullptr) {
+			temp = temp->right;
+		}
 	}
 	return temp;
 }
@@ -28,16 +32,14 @@ typename BST<datatype>::BSTNode * BST<datatype>::succesor(BST<datatype>::BSTNode
 		return temp;
 	}
 	else {
+		if (temp->right == nullptr) {
+			return temp;
+		}
 		temp = temp->right;
-		if (temp == nullptr) {
-			return temp;
+		while (temp->left != nullptr) {
+			temp = temp->left;
 		}
-		else {
-			while (temp->left != nullptr) {
-				temp = temp->left;
-			}
-			return temp;
-		}
+		return temp;
 	}
 }
 
@@ -48,15 +50,14 @@ typename BST<datatype>::BSTNode * BST<datatype>::predecessor(BST<datatype>::BSTN
 		return temp;
 	}
 	else {
-		temp = temp->left;
-		if (temp == nullptr) {
+		if (temp->left == nullptr) {
 			return temp;
 		}
-		else {
-			while (temp->right != nullptr) {
-				temp = temp->right;
-			}
-			return temp;
+		temp = temp->left;
+		while (temp->right != nullptr) {
+			temp = temp->right;
+		}
+		return temp;
 		}
 	}
 }
