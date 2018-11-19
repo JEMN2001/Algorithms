@@ -4,7 +4,7 @@
 #include <list>
 #include <iostream>
 
-std::size_t PRIME_INITIAL_DIMENSION = 5;
+const std::size_t PRIME_INITIAL_DIMENSION = 5;
 
 template<typename dataType>
 class hashFunction {
@@ -36,6 +36,6 @@ class hashPair {
 		void display(void) const;
 };
 
-#include "hash_pair.cpp"
+#include "Murcia_Perez_hash_pair.cpp"
 
 #endif //_HashPair_hpp_

@@ -2,7 +2,7 @@
 #define _HashPair_cpp_
 
 #include <list>
-#include "hash_pair.hpp"
+#include "Murcia_Perez_hash_pair.hpp"
 
 template<typename dataType>
 std::size_t hashFunction<dataType>::operator()(const dataType & key) {
@@ -103,7 +103,7 @@ void hashPair<keyType, valueType>::display(void) const {
 	std::cout << "Load Factor: " << ((double) count)/nBuckets << std::endl;
 	for (size_t i = 0; i < nBuckets; ++i) {
 		auto lst = table[i];
-		std::cout << "Buucket: " << i << "   size: " << lst.size() << std::endl;
+		std::cout << "Bucket: " << i << "   size: " << lst.size() << std::endl;
 	}
 }
 
