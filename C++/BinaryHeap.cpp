@@ -60,8 +60,12 @@ void BinaryHeap<dataType>::insert(dataType elem) {
 
 template<typename dataType>
 void BinaryHeap<dataType>::deleteMin() {
-	percolateDown(0);
-	array.pop_back();
+	if (array.size() > 0) {
+		percolateDown(0);
+		array.pop_back();
+	}
+	else 
+		throw std::underflow_error("Function deleteMin() incoked when heap was empty");
 }
 
 template<typename dataType>
