@@ -25,6 +25,9 @@ hashPair<keyType, valueType>::hashPair() {
 template<typename keyType, typename valueType>
 hashPair<keyType, valueType>::~hashPair() {
 	clear();
+	delete[] table;
+	table = nullptr;
+	count = 0;
 }
 
 template<typename keyType, typename valueType>
@@ -93,9 +96,10 @@ std::size_t hashPair<keyType, valueType>::size(void) const{
 
 template<typename keyType, typename valueType>
 void hashPair<keyType, valueType>::clear(void) {
-	delete[] table;
+	for (std::size_t i = 0; i < nBuckets; ++i) {
+		table[i].clear();
+	}
 	count = 0;
-	table = new std::list<std::pair<keyType, valueType>>[nBuckets] {};
 }
 
 template<typename keyType, typename valueType>
