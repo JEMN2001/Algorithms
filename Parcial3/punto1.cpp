@@ -138,7 +138,7 @@ void bst<keyType>::display(bstNode * bush, std::ostream & out) const {
 
 template <typename keyType>
 void bst<keyType>::display(std::ostream & out) const {
-    out << "Tree " << tree << " nodes: " << count << " full nodes " << full_nodes(tree) << " num leaves " << num_leaves(tree) << std::endl;
+    out << "Tree " << tree << " nodes: " << count << " full nodes: " << full_nodes(tree) << " num leaves: " << num_leaves(tree) << std::endl;
     display(tree, out);
 }
 
