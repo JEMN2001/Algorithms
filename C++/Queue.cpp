@@ -18,7 +18,8 @@ void Queue<datatype>::expandCapacity() {
 
 template<typename datatype>
 void Queue<datatype>::deepCopy(const Queue<datatype> & que) {
-	delete[] array;
+	if (array != nullptr)
+		delete[] array;
 	array = new datatype[que.capacity] {};
 	datatype *temp = que.array;
 	for (size_t i = que.head; i < (que.head+que.tail)%que.capacity; ++i) {
@@ -41,6 +42,7 @@ Queue<datatype>::Queue() {
 
 template<typename datatype>
 Queue<datatype>::Queue(const Queue<datatype> & que) {
+	array = nullptr;
 	this->deepCopy(que);
 }
 
