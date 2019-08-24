@@ -4,34 +4,44 @@
 #include <vector>
 
 /**
-*Method that takes by reference a vector of integers, and sort it using the InsertionSort Algorithm
+*Method that takes by reference a vector of integers, and sorts it using the InsertionSort Algorithm
 *lst: vector that will be sorted
 **/
 void InsertionSort(std::vector<int> & lst);
 /**
-*Method that takes by reference a vector of integers, and sort it using the SelectionSort Algorithm
+*Method that takes by reference a vector of integers, and sorts it using the SelectionSort Algorithm
 *lst: vector that will be sorted
 **/
 void SelectionSort(std::vector<int> & lst);
 /**
-*Method that takes by reference a vector of integers, and sort it using the StoogeSort Algorithm
+*Method that takes by reference a vector of integers, and sorts it using the DoubleSelectionSort Algorithm
+*lst: vector that will be sorted
+**/
+void DoubleSelectionSort(std::vector<int> & lst);
+/**
+*Method that takes by reference a vector of integers, and sorts it using the StoogeSort Algorithm
 *lst: vector that will be sorted
 *start: starting index of the vector
 *end: ending index of the vector
 **/
 void StoogeSort(std::vector<int> & lst, int start, int end);
 /**
-*Method that takes by reference a vector of integers, and sort it using the BogoSort Algorithm
+*Method that takes by reference a vector of integers, and sorts it using the BogoSort Algorithm
 *lst: Vector that will be sorted
 **/
 void BogoSort(std::vector<int> & lst);
 /**
-*Method that takes by reference a vector of integers, and sort it using the BubbleSort Algorithm
+*Method that takes by reference a vector of integers, and sorts it using the BubbleSort Algorithm
 *lst: vector that will be sorted
 **/
 void BubbleSort(std::vector<int> & lst);
 /**
-*FUnction that takes by reference a vector of integers, and ckeck if the vector is sorted
+*Method that takes by reference a vector of integers, and sorts it using the CockatiSort Algorithm
+*lst: vector that will be sorted
+**/
+void CocktailSort(std::vector<int> & lst);
+/**
+*Function that takes by reference a vector of integers, and ckeck if the vector is sorted
 *lst: vector that will be checked
 *return: true, if it's sorted, false if not
 **/
